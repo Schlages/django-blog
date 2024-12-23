@@ -21,11 +21,10 @@ class BlogListView(ListView):
 
     template_name = "blogging/list.html"
     queryset = Post.objects.filter(published_date__isnull=False).order_by(
-        "-published_date"
-    )
+        "-published_date")
 
 
 class BlogDetailView(DetailView):
-
-    model = Post
+    queryset = Post.objects.filter(published_date__isnull=False).order_by(
+        "-published_date")
     template_name = "blogging/detail.html"
