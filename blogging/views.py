@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+
 def stub_view(request, *args, **kwargs):
     body = "Stub View\n\n"
     if args:
@@ -18,10 +19,13 @@ def stub_view(request, *args, **kwargs):
 
 class BlogListView(ListView):
 
-    template_name = 'blogging/list.html'
-    queryset = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
+    template_name = "blogging/list.html"
+    queryset = Post.objects.filter(published_date__isnull=False).order_by(
+        "-published_date"
+    )
+
 
 class BlogDetailView(DetailView):
 
     model = Post
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"
