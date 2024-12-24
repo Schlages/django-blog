@@ -1,0 +1,13 @@
+language: python
+python:
+  -"3.11"
+install:
+  -pip install -r requirements.txt
+  -python manage.py migrate
+script:
+  - black --check blogging mysite polling
+  - python manage.py test
+
+
+
+
