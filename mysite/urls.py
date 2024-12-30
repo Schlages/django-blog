@@ -20,11 +20,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include  # <-- Make sure you have both of these imports.
 from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import TemplateView
 
+# path("", TemplateView.as_view(template_name="base.html")),
 urlpatterns = [
     path("polling/", include("polling.urls")),  # <-- Add this
     path("", include("blogging.urls")),
     path("admin/", admin.site.urls),
     path("login/", LoginView.as_view(template_name="login.html"), name="login"),
-    path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
+    path('logout/', LogoutView.as_view(next_page='/'), name="logout"),
+    path("accounts/", include("allauth.urls")),
 ]
